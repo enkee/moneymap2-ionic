@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, Events } from 'ionic-angular';
 import { Transaction } from '../../database';
+import { GeolocationService } from '../../services/geolocation.service'
 
 /**
  * Generated class for the AddingPage page.
@@ -16,22 +17,38 @@ import { Transaction } from '../../database';
 })
 export class AddingPage {
   model : Transaction;
+  shouldGeolocate : boolean = false;
+  shouldSend : boolean = true;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public geolocator: GeolocationService) {
   }
 
   ionViewCanEnter() {
     this.model = new Transaction(null, "");
+    console.log("About to get location");
+  }
+
+  getLocation(){
+    if(this.shouldGeolocate){
+      this.shouldSend = false;
+      this.geolocator.get().then((resultado)=>{
+        this.model.setCoords(resultado.coords);
+        console.log(this.model);
+        this.shouldSend = true;
+      }).catch((err) => console.log(err));
+    }else{
+      this.model.cleanCoords();
+      console.log(this.model);
+    }
   }
 
   save(){
-    //Salva y luego Limpia
-    this.model.save().then(result => {
-      //Restablece formulario
-      this.model = new Transaction(null, "");
-    //Usamos el metodo pop del servicio navCtrl 
-    this.navCtrl.pop();
+    if(this.shouldSend = true){
+      this.model.save().then(result => {
+      //this.model = new Transaction(null,"");   //ya no es necesario por pop
+      this.navCtrl.pop();
     });
+    }
   }
 
 }

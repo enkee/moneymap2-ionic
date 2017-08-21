@@ -19,10 +19,14 @@
     <ion-input type="text" [(ngModel)]="model.title"></ion-input>
   </ion-item>
   <ion-item >
-    <ion-label floating>Monto</ion-label>
+    <ion-label floating>Monto gastado</ion-label>
     <ion-input type="number" [(ngModel)]="model.amount"></ion-input>
   </ion-item>
+  <ion-item >
+    <ion-label>Guardar ubicacion</ion-label>
+    <ion-toggle [(ngModel)]="shouldGeolocate" (ionChange)="getLocation()"></ion-toggle>
+  </ion-item>
   <div class="actions">
-    <button ion-button (click)="save()">Agregar</button>
+    <button ion-button (click)="save()" [disabled]="!shouldSend">Agregar</button>
   </div>
 </ion-content>
