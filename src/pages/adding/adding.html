@@ -7,12 +7,22 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>adding</ion-title>
+    <ion-title>Agregar Movimiento</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-
+  <ion-item>
+    <ion-label floating>Descripcion</ion-label>
+    <ion-input type="text" [(ngModel)]="model.title"></ion-input>
+  </ion-item>
+  <ion-item >
+    <ion-label floating>Monto</ion-label>
+    <ion-input type="number" [(ngModel)]="model.amount"></ion-input>
+  </ion-item>
+  <div class="actions">
+    <button ion-button (click)="save()">Agregar</button>
+  </div>
 </ion-content>

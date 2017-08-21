@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Events } from 'ionic-angular';
+import { Transaction } from '../../database';
 
 /**
  * Generated class for the AddingPage page.
@@ -14,12 +15,23 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'adding.html',
 })
 export class AddingPage {
+  model : Transaction;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad AddingPage');
+  ionViewCanEnter() {
+    this.model = new Transaction(null, "");
+  }
+
+  save(){
+    //Salva y luego Limpia
+    this.model.save().then(result => {
+      //Restablece formulario
+      this.model = new Transaction(null, "");
+    //Usamos el metodo pop del servicio navCtrl 
+    this.navCtrl.pop();
+    });
   }
 
 }

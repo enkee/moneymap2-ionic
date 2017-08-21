@@ -44,7 +44,7 @@ export class Transaction implements ITransaction{
         if(imageUrl) this.imageUrl = imageUrl;
         if(id) this.id = id;
     }
-
+    //Guarda transaccion
     save(){
         return db.transactions.add(this);
     }

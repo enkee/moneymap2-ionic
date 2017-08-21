@@ -23,11 +23,11 @@ export class TransactionsPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
+//Refesca la vista y se muestra las nuevas transacciones
+  ionViewWillEnter() {
+    //let transaction = new Transaction(20,"Primera Transaccion");
 
-  ionViewDidLoad() {
-    let transaction = new Transaction(20,"Primera Transaccion");
-
-    transaction.save();
+    //transaction.save();
     this.loadTransactions();
   }
 
