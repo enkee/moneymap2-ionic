@@ -26,6 +26,14 @@
     <ion-label>Guardar ubicacion</ion-label>
     <ion-toggle [(ngModel)]="shouldGeolocate" (ionChange)="getLocation()"></ion-toggle>
   </ion-item>
+
+  <div class="actions">
+    <button ion-button clear (click)="getPhoto()">
+      <ion-icon name ="add"></ion-icon>
+      Agregar Foto
+    </button>
+  </div>
+
   <div class="actions">
     <button ion-button (click)="save()" [disabled]="!shouldSend">Agregar</button>
   </div>

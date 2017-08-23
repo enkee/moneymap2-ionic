@@ -20,6 +20,7 @@
         "@angular/http": "4.1.3",
         "@angular/platform-browser": "4.1.3",
         "@angular/platform-browser-dynamic": "4.1.3",
+        "@ionic-native/camera": "^4.1.0",
         "@ionic-native/core": "3.12.1",
         "@ionic-native/geolocation": "^4.1.0",
         "@ionic-native/google-maps": "^4.1.0",
@@ -27,14 +28,15 @@
         "@ionic-native/status-bar": "3.12.1",
         "@ionic/storage": "2.0.1",
         "cordova-android": "^6.2.3",
-        "cordova-plugin-compat": "^1.0.0",
-        "cordova-plugin-console": "^1.0.5",
-        "cordova-plugin-device": "^1.1.4",
+        "cordova-plugin-camera": "^2.4.1",
+        "cordova-plugin-compat": "^1.1.0",
+        "cordova-plugin-console": "^1.0.7",
+        "cordova-plugin-device": "^1.1.6",
         "cordova-plugin-geolocation": "^2.4.3",
         "cordova-plugin-googlemaps": "^1.4.5",
         "cordova-plugin-splashscreen": "^4.0.3",
-        "cordova-plugin-statusbar": "^2.2.2",
-        "cordova-plugin-whitelist": "^1.3.1",
+        "cordova-plugin-statusbar": "^2.2.3",
+        "cordova-plugin-whitelist": "^1.3.2",
         "dexie": "^1.5.1",
         "ionic-angular": "3.6.0",
         "ionic-plugin-keyboard": "^2.2.1",
@@ -60,7 +62,8 @@
             "cordova-plugin-googlemaps": {
                 "API_KEY_FOR_ANDROID": "AIzaSyBtcFd-AoshiTuIEjFdQ9P9pgnP3A_Z2Co",
                 "API_KEY_FOR_IOS": "AIzaSyBtcFd-AoshiTuIEjFdQ9P9pgnP3A_Z2Co"
-            }
+            },
+            "cordova-plugin-camera": {}
         },
         "platforms": [
             "android"
