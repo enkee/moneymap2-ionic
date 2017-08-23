@@ -10,6 +10,7 @@ import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
 import { TransactionsPage } from '../pages/transactions/transactions';
 import { AddingPage } from '../pages/adding/adding';
+import { MapPage } from '../pages/map/map';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -24,7 +25,8 @@ import { GeolocationService } from '../services/geolocation.service';
     HomePage,
     TabsPage,
     TransactionsPage,
-    AddingPage
+    AddingPage,
+    MapPage
   ],
   imports: [
     BrowserModule,
@@ -39,7 +41,8 @@ import { GeolocationService } from '../services/geolocation.service';
     HomePage,
     TabsPage,
     TransactionsPage,
-    AddingPage
+    AddingPage,
+    MapPage
   ],
   providers: [
     StatusBar,
