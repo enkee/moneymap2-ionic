@@ -54,6 +54,16 @@ export class Transaction implements ITransaction{
         this.lng = coords.longitude;
     }
 
+    getImage():string{
+        if(this.imageUrl)
+            return this.imageUrl;
+        return "blue";
+    }
+
+    hasLocation():boolean{
+        return !!(this.lat && this.lng);
+    }
+
     cleanCoords(){
         this.lat = null;
         this.lng = null;

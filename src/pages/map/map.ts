@@ -40,12 +40,14 @@ export class MapPage {
     for(var i = 0; i< transactions.length; ++i){
       let transaction = transactions[i];
 
+     if(!transaction.hasLocation()) continue;
+
       let markerLocation : LatLng = new LatLng(transaction.lat, transaction.lng);
 
       let markerOptions : MarkerOptions = {
         position: markerLocation,
         title: transaction.title,
-        icon: "blue"
+        icon: transaction.getImage()
       }
       //Agrega el marcador al mapa
       this.map.addMarker( markerOptions ).then((marker: MarkerOptions) => {
@@ -78,6 +80,6 @@ export class MapPage {
       }
     });
     //Luego que el mapa termino de cargare entonces recien cargar los marcadores
-    this.map.on(GoogleMapsEvent.MAP_READY).subscribe(() => this.loadMarkers())
+    this.map.on( GoogleMapsEvent.MAP_READY ).subscribe(() => this.loadMarkers())
   }
 }
