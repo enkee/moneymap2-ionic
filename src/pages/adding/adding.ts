@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams, Events } from 'ionic-angular';
 import { Transaction } from '../../database';
 import { GeolocationService } from '../../services/geolocation.service'
 import { Camera, CameraOptions } from '@ionic-native/camera';
+import { WalletService } from '../../services/wallets.service'
 
 /**
  * Generated class for the AddingPage page.
@@ -22,11 +23,13 @@ export class AddingPage {
   shouldSend : boolean = true;
   imageData : string;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public geolocator: GeolocationService, private camera: Camera) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,
+              public geolocator: GeolocationService, private camera: Camera,
+              private walletService: WalletService) {
   }
 
   ionViewCanEnter() {
-    this.model = new Transaction(null, "");
+    this.model = this.cleanTransaction();
     console.log("About to get location");
   }
 
@@ -69,10 +72,18 @@ export class AddingPage {
   save(){
     if(this.shouldSend = true){
       this.model.save().then(result => {
-      this.model = new Transaction(null,"");   //ya no es necesario por pop
+      this.model = this.cleanTransaction();
       this.navCtrl.pop();
     });
     }
+  }
+
+  cleanTransaction() : Transaction{
+    let transaction = new Transaction(null,"");
+
+    transaction.walletId = this.walletService.getID();
+
+    return transaction;
   }
 
 }

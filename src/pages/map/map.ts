@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { GoogleMap, GoogleMapsEvent, LatLng, GoogleMapOptions, MarkerOptions } from '@ionic-native/google-maps';
 import { GeolocationService } from '../../services/geolocation.service';
 import { Transaction } from '../../database';
+import {TransactionService} from '../../services/transactions.service';
 /**
  * Generated class for the MapPage page.
  *
@@ -19,7 +20,8 @@ export class MapPage {
   // Se crea una instancia del mapa vacio
   map: GoogleMap = null;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public geolocator : GeolocationService) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,
+              public geolocator : GeolocationService, private transactionService : TransactionService) {
   }
 
   ionViewDidEnter() {
@@ -32,7 +34,7 @@ export class MapPage {
 
   loadMarkers(){
     //se consiguen todas las transacciones y luego se pasa a otra funcion para crear las marcas.
-    Transaction.all().then((results) => this.loadTransactionMarkers(results));
+    this.transactionService.all().then((results) => this.loadTransactionMarkers(results));
   }
 
   loadTransactionMarkers(transactions){

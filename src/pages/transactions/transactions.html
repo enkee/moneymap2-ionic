@@ -20,11 +20,12 @@
     <ion-list *ngFor="let transaction of transactions">
       <button ion-item>
         <strong>{{transaction.amount}} {{transaction.title}}</strong>
+        {{transaction.title}}
       </button>
     </ion-list>
   </ion-card>
 
-  <ion-fab>
+  <ion-fab class="main">
     <button ion-fab [navPush]="addingPage">+</button>
   </ion-fab>
 </ion-content>

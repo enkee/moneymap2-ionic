@@ -3,6 +3,8 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 import {Transaction} from '../../database';
 import {AddingPage} from '../adding/adding';
+import {WalletService} from '../../services/wallets.service';
+import {TransactionService} from '../../services/transactions.service';
 /**
  * Generated class for the TransactionsPage page.
  *
@@ -21,10 +23,18 @@ export class TransactionsPage {
   transactions : any;
   addingPage = AddingPage;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,
+              private walletService : WalletService, private transactionService : TransactionService) {
   }
 //Refesca la vista y se muestra las nuevas transacciones
   ionViewWillEnter() {
+   if(this.walletService.empty()){
+     this.walletService.validateFirstWallet();
+   }
+
+    //this.walletService.validateFirstWallet();
+    console.log(this.walletService.getID());
+
     //let transaction = new Transaction(20,"Primera Transaccion");
 
     //transaction.save();
@@ -32,7 +42,7 @@ export class TransactionsPage {
   }
 
   loadTransactions(){
-    Transaction.all()
+    this.transactionService.all()
                .then((resultados) => {
                  this.transactions = resultados
                  console.log(this.transactions);
